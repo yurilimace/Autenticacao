@@ -1,0 +1,8 @@
+$theme-colors: (
+  primary: #aa4465,
+  secondary: #ddfff7,
+);
+
+/* finally, import Bootstrap */
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
