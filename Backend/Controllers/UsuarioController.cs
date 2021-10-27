@@ -1,7 +1,9 @@
 ﻿using Autenticacao.Context;
 using Autenticacao.Entidade;
+using Autenticacao.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +16,22 @@ namespace Autenticacao.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly IConfiguration _configuration; 
 
-        public UsuarioController(AppDbContext context)
+        public UsuarioController(AppDbContext context,IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         [HttpPost]
         public ActionResult<UsuarioController> Post([FromBody] Usuario usuario)
         {
-            return Ok(new { mensagem = "Get Funcionado" });
+            
+            var usuarioBanco = _context.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
+            var tokenGerado = new TokenService(_configuration).GerarToken(usuarioBanco);
+
+            return Ok(new { mensagem = "Login Funcionado",Token = tokenGerado });
         }
 
         [HttpPost("criarusuario")]
