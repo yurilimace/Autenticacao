@@ -8,17 +8,31 @@ import {
   Button,
 } from "react-bootstrap";
 
+import {useForm} from 'react-hook-form'
+
+import {UsuarioSchema} from '../../Schemas/usuarioSchema'
+import { yupResolver } from '@hookform/resolvers/yup';
+
 const LoginForm = () => {
+  const {register,handleSubmit,watch,formState:{errors}} = useForm({
+    resolver:yupResolver(UsuarioSchema)
+  });
+
+
+  const onSubmit = data => console.log(data)
+
   return (
     <Container fluid className="w-75">
-      <Form>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group>
           <Form.Label> Usuário </Form.Label>
-          <Form.Control type="text" />
+          <Form.Control type="text" {...register("usuario")} className={errors.usuario?.message && "is-invalid"} />
+          <p className="invalid-feedback"> {errors.usuario?.message}  </p>
         </Form.Group>
         <Form.Group className="mt-3">
           <Form.Label> Senha </Form.Label>
-          <Form.Control type="password" />
+          <Form.Control type="password" {...register("senha")} className={errors.senha?.message && "is-invalid"} />
+          <p className="invalid-feedback"> {errors.senha?.message}  </p>
         </Form.Group>
         <Row className="mt-3">
           <Col xl={6}>
