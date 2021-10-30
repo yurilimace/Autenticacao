@@ -12,6 +12,7 @@ import {useForm} from 'react-hook-form'
 
 import {UsuarioSchema} from '../../Schemas/usuarioSchema'
 import { yupResolver } from '@hookform/resolvers/yup';
+import { DispararAlerta } from "../../Utils/Alert/Alert";
 
 const LoginForm = () => {
   const {register,handleSubmit,watch,formState:{errors}} = useForm({
@@ -19,7 +20,10 @@ const LoginForm = () => {
   });
 
 
-  const onSubmit = data => console.log(data)
+  const onSubmit = data => {
+    console.log(data)
+    DispararAlerta("erro","erro ao logar")
+  }
 
   return (
     <Container fluid className="w-75">

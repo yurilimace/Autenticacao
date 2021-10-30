@@ -12,6 +12,7 @@ import {useForm} from 'react-hook-form'
 
 import {NovoUsuarioSchema} from '../../Schemas/usuarioSchema'
 import { yupResolver } from '@hookform/resolvers/yup';
+import { CriarNovoUsuario } from "../../Services/Login";
 
 const NovoUsarioForm = () => {
   const {register,handleSubmit,formState:{errors}} = useForm({
@@ -19,8 +20,10 @@ const NovoUsarioForm = () => {
   });
 
 
-  const onSubmit = data => console.log(data)
-
+  const onSubmit =   async (data) => {
+    const responseData = await CriarNovoUsuario(data,"Teste ola deu certo")
+    console.log(responseData)
+  }
 
   return (
     <Container fluid className="w-75">
