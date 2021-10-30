@@ -60,3 +60,4 @@ C:\Users\55859\Documents\Projetos\Autenticação\Autenticacao\Backend\obj\Debug\
 C:\Users\55859\Documents\Projetos\Autenticação\Autenticacao\Backend\obj\Debug\net5.0\Autenticacao.pdb
 C:\Users\55859\Documents\Projetos\Autenticação\Autenticacao\Backend\obj\Debug\net5.0\Autenticacao.genruntimeconfig.cache
 C:\Users\55859\Documents\Projetos\Autenticação\Autenticacao\Backend\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\55859\Documents\Projetos\Autenticação\Autenticacao\Backend\bin\Debug\net5.0\BCrypt.Net-Next.dll

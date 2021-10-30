@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "aWiKt2ggzDCpIMLL/BguyOPWXHw069dFVXswy3cTadXxJAw3hyN5trUdPfbt/HalV/+r46vgDrjhgcEHBYsUdw==",
+  "dgSpecHash": "H2mfUdFVsKhcNeagUs9MsFwEMT7uRfYLwKBw2ejmZEYfW3hWiLCCNvj79BV9XdIzVjN4Z7BYywRu9bFdsrn48g==",
   "success": true,
   "projectFilePath": "C:\\Users\\55859\\Documents\\Projetos\\Autenticação\\Autenticacao\\Backend\\Autenticacao.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\55859\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\55859\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\55859\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\55859\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

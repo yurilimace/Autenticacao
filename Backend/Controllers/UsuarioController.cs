@@ -37,9 +37,12 @@ namespace Autenticacao.Controllers
         [HttpPost("criarusuario")]
         public  ActionResult CriarUsuario([FromBody] Usuario usuario)
         {
+
+            var senhaEncriptada = new UsuarioService().EncriptarSenha(usuario.Senha);
+            usuario.Senha = senhaEncriptada;
             _context.Add(usuario);
             _context.SaveChanges();
-            return Ok();
+            return Ok(new{messagem="Cadastro Efetuado com sucesso" });
         }
 
         [HttpGet]
