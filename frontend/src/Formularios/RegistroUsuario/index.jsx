@@ -9,20 +9,27 @@ import {
 } from "react-bootstrap";
 
 import {useForm} from 'react-hook-form'
-
+import { useHistory } from "react-router";
 import {NovoUsuarioSchema} from '../../Schemas/usuarioSchema'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CriarNovoUsuario } from "../../Services/Login";
-
+import { DispararAlerta } from "../../Utils/Alert/Alert";
 const NovoUsarioForm = () => {
+
+const history = useHistory();
+
   const {register,handleSubmit,formState:{errors}} = useForm({
     resolver:yupResolver(NovoUsuarioSchema)
   });
 
 
   const onSubmit =   async (data) => {
-    const responseData = await CriarNovoUsuario(data,"Teste ola deu certo")
-    console.log(responseData)
+    const responseData = await CriarNovoUsuario(data)
+    if(responseData.status === 200){
+      DispararAlerta("sucesso",responseData.data.messagem)
+      history.push("/login")
+    }
+    
   }
 
   return (

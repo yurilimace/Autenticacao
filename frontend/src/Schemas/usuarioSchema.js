@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const UsuarioSchema = yup.object({
-  usuario: yup.string().required("Campo email obrigatorio"),
+  email: yup.string().required("Campo email obrigatorio"),
   senha: yup.string().required("Campo senha obrigatório"),
 });
 

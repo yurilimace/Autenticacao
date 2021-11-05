@@ -11,7 +11,7 @@ const GerenciadorRotas = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/home" component={Login} />
+        <Route path="/registro" component={Login} />
         <Route path="/login" component={Login} />
         <Redirect from="" to="/login" />
       </Switch>

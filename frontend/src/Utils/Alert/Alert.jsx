@@ -14,12 +14,15 @@ const SucessoToast = Swal.mixin({
 })
 
 export const DispararAlerta = (tipo,messagem) =>{
+   
     if(tipo === "sucesso"){
         SucessoToast.fire({
             icon:'success',
             iconColor:'#ffffff',
             title :"<h5 style='color:white' >" + messagem + "</h5>",
-            background:"#77D970"
+            background:"#77D970",
+            
+           
         })
     }
     else if(tipo === "erro"){

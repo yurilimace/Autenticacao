@@ -13,5 +13,11 @@ namespace Autenticacao.Services
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(senha);
             return passwordHash;
         }
+
+        public bool VerificarSenha(string senha,string hash)
+        {
+            bool descript = BCrypt.Net.BCrypt.Verify(senha, hash);
+            return descript;
+        }
     }
 }

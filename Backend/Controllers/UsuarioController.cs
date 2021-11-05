@@ -16,22 +16,32 @@ namespace Autenticacao.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly AppDbContext _context;
-        private readonly IConfiguration _configuration; 
+        private readonly IConfiguration _configuration;
+        private readonly UsuarioService _usuarioService;
 
         public UsuarioController(AppDbContext context,IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;
+            _usuarioService = new UsuarioService();
         }
 
         [HttpPost]
         public ActionResult<UsuarioController> Post([FromBody] Usuario usuario)
         {
-            
-            var usuarioBanco = _context.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
-            var tokenGerado = new TokenService(_configuration).GerarToken(usuarioBanco);
+            try
+            {
+                var usuarioBanco = _context.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
+                var Autenticado = _usuarioService.VerificarSenha(usuario.Senha, usuarioBanco.Senha);
+                var tokenGerado = new TokenService(_configuration).GerarToken(usuarioBanco);
+                return Ok(new { mensagem = "Login Funcionado", Token = tokenGerado });
+            }
+            catch(Exception ex)
+            {
+                return Unauthorized(new { mensagem = "Erro no usuário ou na senha" });
 
-            return Ok(new { mensagem = "Login Funcionado",Token = tokenGerado });
+            }
+
         }
 
         [HttpPost("criarusuario")]

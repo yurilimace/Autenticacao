@@ -5,5 +5,5 @@ export async function Login(usuario) {
 }
 
 export async function CriarNovoUsuario(usuario) {
-  return await base_API.post("usuario/criarusuario");
+  return await base_API.post("usuario/criarusuario", usuario);
 }
