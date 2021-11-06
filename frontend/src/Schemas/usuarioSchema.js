@@ -6,7 +6,7 @@ export const UsuarioSchema = yup.object({
 });
 
 export const NovoUsuarioSchema = yup.object({
-  usuario: yup.string().required("Campo usuario obrigatório"),
+  nome: yup.string().required("Campo usuario obrigatório"),
   email: yup.string().required("Campo email obrigatório"),
   senha: yup.string().required("Campo senha obrigatório"),
   confirmarSenha: yup

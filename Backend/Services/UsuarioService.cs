@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Autenticacao.Context;
+using Autenticacao.Entidade;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +10,7 @@ namespace Autenticacao.Services
 {
     public class UsuarioService
     {
+      
 
         public string EncriptarSenha(string senha)
         {
@@ -19,5 +23,7 @@ namespace Autenticacao.Services
             bool descript = BCrypt.Net.BCrypt.Verify(senha, hash);
             return descript;
         }
+
+      
     }
 }

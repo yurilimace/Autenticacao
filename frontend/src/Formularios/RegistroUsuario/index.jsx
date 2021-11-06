@@ -24,11 +24,17 @@ const history = useHistory();
 
 
   const onSubmit =   async (data) => {
-    const responseData = await CriarNovoUsuario(data)
-    if(responseData.status === 200){
-      DispararAlerta("sucesso",responseData.data.messagem)
-      history.push("/login")
+    try{
+      const responseData = await CriarNovoUsuario(data)
+      if(responseData.status === 200){
+        DispararAlerta("sucesso",responseData.data.messagem)
+        history.push("/login")
+      }
     }
+    catch(err){
+      DispararAlerta("erro",err.response.data.mensagem)
+    }
+   
     
   }
 
@@ -37,7 +43,7 @@ const history = useHistory();
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mt-3">
           <Form.Label> Usuário </Form.Label>
-          <Form.Control type="text"   {...register("usuario")} className={errors.usuario?.message && "is-invalid"} />
+          <Form.Control type="text"   {...register("nome")} className={errors.usuario?.message && "is-invalid"} />
           <p className="invalid-feedback"> {errors.usuario?.message}  </p>
         </Form.Group>
         <Form.Group className="mt-3">

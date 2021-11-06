@@ -1,6 +1,7 @@
 ﻿using Autenticacao.Context;
 using Autenticacao.Entidade;
 using Autenticacao.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -48,14 +49,24 @@ namespace Autenticacao.Controllers
         public  ActionResult CriarUsuario([FromBody] Usuario usuario)
         {
 
-            var senhaEncriptada = new UsuarioService().EncriptarSenha(usuario.Senha);
-            usuario.Senha = senhaEncriptada;
-            _context.Add(usuario);
-            _context.SaveChanges();
-            return Ok(new{messagem="Cadastro Efetuado com sucesso" });
+
+            var verificarUsuario = _context.Usuarios.FirstOrDefault(e => e.Email == usuario.Email);
+            if (verificarUsuario == null)
+            {
+                var senhaEncriptada = new UsuarioService().EncriptarSenha(usuario.Senha);
+                usuario.Senha = senhaEncriptada;
+                _context.Add(usuario);
+                _context.SaveChanges();
+                return Ok(new { messagem = "Cadastro Efetuado com sucesso" });
+            }
+            
+                return BadRequest(new { mensagem = "Usuário já cadastrado" });
+           
+           
         }
 
         [HttpGet]
+        [Authorize(Roles = "gerente")]
         public async Task<ActionResult<UsuarioController>> GetUsuario()
         {
             var lista = await _context.Usuarios.ToListAsync();
