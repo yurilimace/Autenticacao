@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext} from "react";
 import {
   Form,
   FormControl,
@@ -14,9 +14,10 @@ import {UsuarioSchema} from '../../Schemas/usuarioSchema'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { DispararAlerta } from "../../Utils/Alert/Alert";
 import { Login } from "../../Services/Login";
+import UsuarioContext from "../../Context/userContext";
 
 const LoginForm = () => {
-
+  const {usuarioInfo,setUsarioInfoContext} = useContext(UsuarioContext)
   const history = useHistory();
   const {register,handleSubmit,watch,formState:{errors}} = useForm({
     resolver:yupResolver(UsuarioSchema)
@@ -27,6 +28,7 @@ const LoginForm = () => {
     try{
     
       const responseData = await Login(data)
+      setUsarioInfoContext(responseData.data.token)
     }
     catch(err){
       DispararAlerta("erro",err.response.data.mensagem)

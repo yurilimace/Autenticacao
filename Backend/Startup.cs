@@ -31,6 +31,7 @@ namespace Autenticacao
         public void ConfigureServices(IServiceCollection services)
         {
             var key = Encoding.ASCII.GetBytes(Configuration["JWT:SECRET"]);
+            var teste = Configuration["JWT:SECRET"];
             string sqlConnection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(sqlConnection));
             services.AddCors(setup => {
@@ -76,9 +77,10 @@ namespace Autenticacao
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseAuthentication();
+            
 
             app.UseCors("CorsPolicy");
 

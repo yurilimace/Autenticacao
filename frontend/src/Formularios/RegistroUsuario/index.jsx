@@ -34,8 +34,7 @@ const history = useHistory();
     catch(err){
       DispararAlerta("erro",err.response.data.mensagem)
     }
-   
-    
+
   }
 
   return (
