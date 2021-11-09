@@ -29,6 +29,7 @@ const LoginForm = () => {
     
       const responseData = await Login(data)
       setUsarioInfoContext(responseData.data.token)
+      history.push("/home")
     }
     catch(err){
       DispararAlerta("erro",err.response.data.mensagem)
